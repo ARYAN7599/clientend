@@ -1107,7 +1107,7 @@ const MetaMask = () => {
                 <h1>MetaMask Wallet Connection</h1>
 
                 <div className="row align-items-start">
-                    <RLoginButton onClick={connect}>Connect </RLoginButton>
+                    <RLoginButton onClick={connect}>Connect wallet</RLoginButton>
                     <p>wallet address: {account}</p>
                     <button onClick={handleDisconnect}>Disconnect</button>
                     <div className="col">
