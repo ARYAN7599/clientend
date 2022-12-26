@@ -1173,20 +1173,20 @@ const MetaMask = () => {
                 </div>
                 <div className="row align-items-center">
                     <div className="col">
-                        <button onClick={mintedNFTtokenIds}>mintedNFTtokenIds </button>
-                        <p id="tokenIds" className="inputs">mintedNFTtokenIds of Smart Contract </p>
+                        <button onClick={mintedNFTtokenIds}>mintedNFT count </button>
+                        <p id="tokenIds" className="inputs">mintedNFTtoken </p>
                     </div>
                     <div className="col">
-                        <button onClick={listedNFTtokenIds}>mintedNFT </button>
-                        <p id="listedNFTId" className="inputs">mintedNFT no. </p>
+                        <button onClick={listedNFTtokenIds}>listedNFT count </button>
+                        <p id="listedNFTId" className="inputs">listedNFT no. </p>
                     </div>
                     <div className="col">
-                        <button onClick={numberOfNFTsolded}>numberOfNFTsolded </button>
-                        <p id="soldIds" className="inputs">numberOfNFTsolded of Smart Contract </p>
+                        <button onClick={numberOfNFTsolded}>soldedNFT count </button>
+                        <p id="soldIds" className="inputs">NFTsolded no. </p>
                     </div>
                     <div className="col">
                         <button onClick={NFTBuyered}>NFTBuyered </button>
-                        <p id="buyerIds" className="inputs">NFTBuyered of Smart Contract </p>
+                        <p id="buyerIds" className="inputs">NFTBuyered no. </p>
                     </div>
                 </div>
                 <div className="row align-items-center">
