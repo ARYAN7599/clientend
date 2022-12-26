@@ -52,7 +52,7 @@ const MetaMask = () => {
             headers: { "Content-Type": "multipart/form-data" }
         })
             .then(res => {
-                setPath(`${http://139.59.65.197:5000/public/uploads/ + res.data.file}`);
+                setPath(`${process.env.REACT_APP_IMAGE_PATH + res.data.file}`);
                 setImageName(`${res.data.file}`);
                 if (res.data.success === 1) {
                     setSuccess("Image upload successfully");
