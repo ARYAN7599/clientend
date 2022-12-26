@@ -1107,7 +1107,7 @@ const MetaMask = () => {
                 <h1>MetaMask Wallet Connection</h1>
 
                 <div className="row align-items-start">
-                    <RLoginButton onClick={connect}>Connect </RLoginButton>
+                    <RLoginButton onClick={connect}>Connect Wallet </RLoginButton>
                     <p>wallet address: {account}</p>
                     <button onClick={handleDisconnect}>Disconnect</button>
                     <div className="col">
@@ -1146,9 +1146,9 @@ const MetaMask = () => {
                         <button onClick={NFTdecode}>decode CONTRACT URI</button>
                         <input type="text" className="inputs" placeholder="decodeURIId" id="encodeIid" />
                     </div>
-                    <div class="col">
+                    <div className="col">
                         <button onClick={getURIdecoded}>get URIdecoded of the Smart Contract</button>
-                        <p id="URIdecodedId" class="inputs">URIdecoded of Smart Contract </p>
+                        <p id="URIdecodedId" className="inputs">URIdecoded of Smart Contract </p>
                     </div>
                     <div className="col">
                         <button onClick={NFTtokenIds}>_tokenIds of the Smart Contract</button>
