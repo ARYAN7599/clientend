@@ -997,9 +997,14 @@ const MetaMask = () => {
         document.getElementById("URIdecodedId").innerHTML = `URIdecoded: ${data}`;
     }
 
-    const numberOfNFTtokenIds = async () => {
+    const mintedNFTtokenIds = async () => {
         const data = await window.contract1.methods._tokenIds().call();
         document.getElementById("tokenIds").innerHTML = `_tokenIds: ${data}`;
+    }
+
+    const listedNFTtokenIds = async () => {
+        const data = await window.contract2.methods._tokenIds().call();
+        document.getElementById("listedNFTId").innerHTML = `_tokenIds: ${data}`;
     }
 
     const numberOfNFTsolded = async () => {
@@ -1168,8 +1173,12 @@ const MetaMask = () => {
                 </div>
                 <div className="row align-items-center">
                     <div className="col">
-                        <button onClick={numberOfNFTtokenIds}>numberOfNFTtokenIds </button>
-                        <p id="tokenIds" className="inputs">numberOfNFTtokenIds of Smart Contract </p>
+                        <button onClick={mintedNFTtokenIds}>mintedNFTtokenIds </button>
+                        <p id="tokenIds" className="inputs">mintedNFTtokenIds of Smart Contract </p>
+                    </div>
+                    <div className="col">
+                        <button onClick={listedNFTtokenIds}>mintedNFT </button>
+                        <p id="listedNFTId" className="inputs">mintedNFT no. </p>
                     </div>
                     <div className="col">
                         <button onClick={numberOfNFTsolded}>numberOfNFTsolded </button>
