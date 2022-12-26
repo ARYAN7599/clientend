@@ -997,9 +997,19 @@ const MetaMask = () => {
         document.getElementById("URIdecodedId").innerHTML = `URIdecoded: ${data}`;
     }
 
-    const NFTtokenIds = async () => {
+    const numberOfNFTtokenIds = async () => {
         const data = await window.contract1.methods._tokenIds().call();
         document.getElementById("tokenIds").innerHTML = `_tokenIds: ${data}`;
+    }
+
+    const numberOfNFTsolded = async () => {
+        const data = await window.contract2.methods._itemsSold().call();
+        document.getElementById("soldIds").innerHTML = `_tokenIds: ${data}`;
+    }
+
+    const NFTBuyered = async () => {
+        const data = await window.contract2.methods._buyerList().call();
+        document.getElementById("buyerIds").innerHTML = `_tokenIds: ${data}`;
     }
 
     const NFTtokenURL = async () => {
@@ -1026,6 +1036,11 @@ const MetaMask = () => {
         const token4 = document.getElementById("listedTokenId").value;
         const data = await window.contract2.methods.getItemById(token4).call();
         document.getElementById("URIDetails").innerHTML = `tokenURIDetails: ${data}`;
+    }
+
+    const removeNFTList = async () => {
+        const deleteToken = document.getElementById("deletetokenId").value;
+        await window.contract2.methods.removeNFTList(deleteToken).send({ from: account });
     }
 
     const NFTBuyersList = async () => {
@@ -1150,9 +1165,19 @@ const MetaMask = () => {
                         <button onClick={getURIdecoded}>get URIdecoded of the Smart Contract</button>
                         <p id="URIdecodedId" className="inputs">URIdecoded of Smart Contract </p>
                     </div>
+                </div>
+                <div className="row align-items-center">
                     <div className="col">
-                        <button onClick={NFTtokenIds}>_tokenIds of the Smart Contract</button>
-                        <p id="tokenIds" className="inputs">_tokenIds of Smart Contract </p>
+                        <button onClick={numberOfNFTtokenIds}>numberOfNFTtokenIds </button>
+                        <p id="tokenIds" className="inputs">numberOfNFTtokenIds of Smart Contract </p>
+                    </div>
+                    <div className="col">
+                        <button onClick={numberOfNFTsolded}>numberOfNFTsolded </button>
+                        <p id="soldIds" className="inputs">numberOfNFTsolded of Smart Contract </p>
+                    </div>
+                    <div className="col">
+                        <button onClick={NFTBuyered}>NFTBuyered </button>
+                        <p id="buyerIds" className="inputs">NFTBuyered of Smart Contract </p>
                     </div>
                 </div>
                 <div className="row align-items-center">
@@ -1177,6 +1202,10 @@ const MetaMask = () => {
                         <button onClick={SellerListedItemById}>SellerListedItemById CONTRACT URI</button>
                         <input type="text" className="inputs" placeholder="tokenId" id="listedTokenId" />
                         <p id="URIDetails" className="inputs">getItems of Smart Contract </p>
+                    </div>
+                    <div className="col">
+                        <button onClick={removeNFTList}>DeleteListedNft CONTRACT URI</button>
+                        <input type="number" className="inputs" placeholder="deletetoken" id="deletetokenId" />
                     </div>
                     <div className="col">
                         <button onClick={NFTBuyersList}>NFTBuyersList CONTRACT URI</button>
