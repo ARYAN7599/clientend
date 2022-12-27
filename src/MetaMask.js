@@ -970,6 +970,12 @@ const MetaMask = () => {
         document.getElementById("ownerId").innerHTML = `Owner: ${data}`;
     }
 
+    const NFt_Details = async () => {
+        const Details = (document.getElementById("nftId").value);
+        const nftDetail = await window.contract1.methods.nfts(Details).call();
+        document.getElementById("detailsId").innerHTML = `${"ImageName:"+" "+nftDetail.imageName+ " " + "tokenURI:"+""+nftDetail.tokenURI}`;
+    }
+
     const NFTMint = async () => {
         const Image = (document.getElementById("imageId").value);
         const myEntry = (document.getElementById("mintingId").value);
@@ -1149,6 +1155,12 @@ const MetaMask = () => {
                     <div className="col">
                         <button onClick={owner}>get owner of the Smart Contract</button>
                         <p id="ownerId" className="inputs">Owner of Smart Contract </p>
+                    </div>
+
+                    <div className="col">
+                        <button onClick={NFt_Details}>get_NFTs</button>
+                        <input type="text" className="inputs" placeholder="NFTIndex" id="nftId" />
+                        <p id="detailsId" className="inputs">details NFt </p>
                     </div>
 
                     <div className="col">
