@@ -64,16 +64,11 @@ const MetaMask = () => {
     }
 
 
-    let Address1 = "0xffff05DC24CD4d4630B90Db05ae4a33F01A50f40";
-    let Address2 = "0x63641DFDEDb1279f5fdAfa4BF22988697B80D3CC";
+    let Address1 = "0x7ae377A5a1C04411dc2b2E9c71199f5091aB2962";
+    let Address2 = "0x4BDe51392fd947aed028a1d0afd3C2Ac774f9C64";
 
 
     const ABI1 = [
-        {
-            "inputs": [],
-            "stateMutability": "nonpayable",
-            "type": "constructor"
-        },
         {
             "anonymous": false,
             "inputs": [
@@ -125,6 +120,31 @@ const MetaMask = () => {
             "type": "event"
         },
         {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "internalType": "address",
+                    "name": "from",
+                    "type": "address"
+                },
+                {
+                    "indexed": true,
+                    "internalType": "address",
+                    "name": "to",
+                    "type": "address"
+                },
+                {
+                    "indexed": true,
+                    "internalType": "uint256",
+                    "name": "tokenId",
+                    "type": "uint256"
+                }
+            ],
+            "name": "Transfer",
+            "type": "event"
+        },
+        {
             "inputs": [
                 {
                     "internalType": "address",
@@ -164,9 +184,9 @@ const MetaMask = () => {
         {
             "inputs": [
                 {
-                    "internalType": "uint256",
-                    "name": "_tokenId",
-                    "type": "uint256"
+                    "internalType": "string",
+                    "name": "_imageName",
+                    "type": "string"
                 },
                 {
                     "internalType": "string",
@@ -255,31 +275,6 @@ const MetaMask = () => {
             "type": "function"
         },
         {
-            "anonymous": false,
-            "inputs": [
-                {
-                    "indexed": true,
-                    "internalType": "address",
-                    "name": "from",
-                    "type": "address"
-                },
-                {
-                    "indexed": true,
-                    "internalType": "address",
-                    "name": "to",
-                    "type": "address"
-                },
-                {
-                    "indexed": true,
-                    "internalType": "uint256",
-                    "name": "tokenId",
-                    "type": "uint256"
-                }
-            ],
-            "name": "Transfer",
-            "type": "event"
-        },
-        {
             "inputs": [
                 {
                     "internalType": "address",
@@ -301,6 +296,11 @@ const MetaMask = () => {
             "outputs": [],
             "stateMutability": "nonpayable",
             "type": "function"
+        },
+        {
+            "inputs": [],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
         },
         {
             "inputs": [],
@@ -458,9 +458,9 @@ const MetaMask = () => {
             "name": "nfts",
             "outputs": [
                 {
-                    "internalType": "uint256",
-                    "name": "tokenId",
-                    "type": "uint256"
+                    "internalType": "string",
+                    "name": "imageName",
+                    "type": "string"
                 },
                 {
                     "internalType": "string",
@@ -978,7 +978,7 @@ const MetaMask = () => {
 
     const NFTMint = async () => {
         const Image = (document.getElementById("imageId").value);
-        const myEntry = (document.getElementById("mintingId").value);
+        const myEntry = imagePath;
         await window.contract1.methods.NFTMint(Image, myEntry).send({ from: account });
     }
 
@@ -1166,7 +1166,6 @@ const MetaMask = () => {
                     <div className="col">
                         <button onClick={NFTMint}>Mint CONTRACT URI</button>
                         <input type="text" className="inputs" placeholder="ImageName" id="imageId" />
-                        <input type="text" className="inputs" placeholder="NFTMint" id="mintingId" />
                     </div>
                     <div className="col">
                         <button onClick={getEncodedURL}>get CONTRACT URI</button>
