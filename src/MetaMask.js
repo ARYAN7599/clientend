@@ -59,8 +59,6 @@ const MetaMask = () => {
                     alert("Your file is being uploaded!")
                 }
             });
-        // console.log(userInfo.file);
-
     }
 
 
@@ -940,7 +938,6 @@ const MetaMask = () => {
             });
             reset();
         } catch (e) {
-            // console.log(e);
         }
     }
     const reset = () => {
@@ -1104,11 +1101,9 @@ const MetaMask = () => {
         const data = await window.contract2.methods.sellerAproved(token5).call();
         document.getElementById("buyerDetails").innerHTML = `tokenURIDetails: ${Object.values(data)}`;
     }
-    let tokenIds123;
-    let itemIdApproved;
     const ApproveBuyerBySeller = async () => {
-         tokenIds123 = document.getElementById("selectedBuyerId").value;
-         itemIdApproved = document.getElementById("buyerselectedItemId").value;
+        const tokenIds123 = document.getElementById("selectedBuyerId").value;
+        const itemIdApproved = document.getElementById("buyerselectedItemId").value;
         if (tokenIds123 === null || tokenIds123 === "" ,itemIdApproved == null || itemIdApproved === "") {
             alert("Please both fields");
             return false;
@@ -1117,7 +1112,7 @@ const MetaMask = () => {
     }
    
     const FetchBuyerApprovedPrice = async () => {
-        const token11 = tokenIds123;
+        const token11 = document.getElementById("fetchedBuyerId").value;;
         if (token11 == null || token11 === "") {
             alert("Please put index");
             return false;
@@ -1128,8 +1123,8 @@ const MetaMask = () => {
     }
 
     const paymentForNFT = async (req, res, next) => {
-        const buyerIndex = tokenIds123;
-        const itemId = itemIdApproved;
+        const buyerIndex = document.getElementById("NFTpaymentId").value;
+        const itemId = document.getElementById("NFTpaymentId1").value;
         if (buyerIndex == null || buyerIndex === "" , itemId === null || itemId === "") {
             alert("Please fill both fields");
             return false;
@@ -1153,7 +1148,6 @@ const MetaMask = () => {
         }]
 
         await window.ethereum.request({ method: "eth_sendTransaction", params }).catch((err => {
-            // console.log(err)
         }));
         await window.contract2.methods.paymentForNFT(buyerIndex, itemId).send({ from: account });
 
@@ -1180,7 +1174,7 @@ const MetaMask = () => {
                         </div>
                     </div>
 
-                    <img className="previewimg" src={imagePath} alt="UploadImage" />
+                    <a href={imagePath} target="_blank"  rel="noreferrer"><img className="previewimg" src={imagePath} alt="UploadImage" /></a>
                     <p>{imageName}</p>
 
                 </div>
@@ -1305,15 +1299,16 @@ const MetaMask = () => {
                 <div className="row align-items-start">
                     <div className="col">
                         <button onClick={FetchBuyerApprovedPrice}>getBuyerPrice CONTRACT URI</button>
+                        <input type="text" className="inputs" placeholder="buyerIds" id="fetchedBuyerId" />
                         <p id="selectedPrice" className="inputs">getBuyerPrice of Smart Contract </p>
                     </div>
                 </div>
                 <div className="row align-items-end">
                     <div className="col-md-6 offset-md-3">
+                    <input type="text" className="inputs" placeholder="itemId" id="NFTpaymentId" />
+                    <input type="text" className="inputs" placeholder="itemId" id="NFTpaymentId1" />
                         <button onClick={paymentForNFT}>paymentForNFT CONTRACT URI</button><br />
                     </div>
-
-
                 </div>
             </div>
 
