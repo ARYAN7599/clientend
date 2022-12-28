@@ -1288,7 +1288,7 @@ const MetaMask = () => {
                         <input type="number" className="inputs" placeholder="_amount" id="buyerPrice" />
                     </div>
                     <div className="col">
-                        <button onClick={buyerLists}>sellerAproved CONTRACT URI</button>
+                        <button onClick={buyerLists}>get buyers list</button>
                         <input type="text" className="inputs" placeholder="buyerIndex" id="buyerId" />
                         <p id="buyerDetails" className="inputs">sellerAproved of Smart Contract </p>
                     </div>
@@ -1305,16 +1305,12 @@ const MetaMask = () => {
                 <div className="row align-items-start">
                     <div className="col">
                         <button onClick={FetchBuyerApprovedPrice}>getBuyerPrice CONTRACT URI</button>
-                        <input type="text" className="inputs" placeholder="buyerIds" id="fetchedBuyerId" />
-
                         <p id="selectedPrice" className="inputs">getBuyerPrice of Smart Contract </p>
                     </div>
                 </div>
                 <div className="row align-items-end">
                     <div className="col-md-6 offset-md-3">
                         <button onClick={paymentForNFT}>paymentForNFT CONTRACT URI</button><br />
-                        <input type="text" className="inputs" placeholder="buyerIndex" id="buyerPriceId" />
-                        <input type="text" className="inputs" placeholder="itemId" id="NFTSelectedId" />
                     </div>
 
 
