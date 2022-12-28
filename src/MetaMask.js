@@ -979,12 +979,20 @@ const MetaMask = () => {
     const NFTMint = async () => {
         const Image = (document.getElementById("imageId").value);
         const myEntry = imagePath;
+        if (Image === null || Image === "", myEntry === null || myEntry === "") {
+            alert("Please Upload Nft using Upload Image");
+            return false;
+        }
         await window.contract1.methods.NFTMint(Image, myEntry).send({ from: account });
     }
 
     let encodeURL;
     const getEncodedURL = async () => {
         const myEntry = document.getElementById("encodeId").value;
+        if (myEntry === null || myEntry === "") {
+            alert("Please put Index");
+            return false;
+        }
         encodeURL = await window.contract1.methods.getEncodedURL(myEntry).call();
         document.getElementById("encodeIded").innerHTML = `encode: ${encodeURL}`;
 
@@ -992,9 +1000,11 @@ const MetaMask = () => {
 
     const NFTdecode = async () => {
         const encode = document.getElementById("encodeIid").value;
-        console.log("encode", encode);
+        if (encode === null || encode === "") {
+            alert("Please put Index");
+            return false;
+        }
         const myEntry = await window.contract1.methods.getEncodedURL(encode).call();
-        console.log("myEntry", myEntry);
         await window.contract1.methods.decodeNFTurl(myEntry).send({ from: account });
     }
 
@@ -1025,6 +1035,10 @@ const MetaMask = () => {
 
     const NFTtokenURL = async () => {
         const token = document.getElementById("mintedId").value;
+        if (token === null || token === "") {
+            alert("Please put token Index");
+            return false;
+        }
         const data = await window.contract1.methods.tokenURI(token).call();
         document.getElementById("mintedNFTId").innerHTML = `tokenURIs: ${data}`;
     }
@@ -1032,6 +1046,10 @@ const MetaMask = () => {
     const ApproveTheNFt = async () => {
         const nftContract = Address2;
         const tokenIds = document.getElementById("approveMintId").value;
+        if (nftContract === null || nftContract === "",tokenIds === null || tokenIds === "") {
+            alert("Please fill field");
+            return false;
+        }
         await window.contract1.methods.approve(nftContract, tokenIds).send({ from: account });
     }
 
@@ -1040,51 +1058,88 @@ const MetaMask = () => {
         const tokenIds1 = document.getElementById("sellerNFTId").value;
         const amount = document.getElementById("sellerGivenPrice").value;
         const balances = await Web3.utils.toWei(amount, 'ether');
+        if (nftContract1 === null || nftContract1 === "",tokenIds1 === null || tokenIds1 === "") {
+            alert("Please fill all fields");
+            return false;
+        }
         await window.contract2.methods.listTheNFTs(nftContract1, tokenIds1, balances).send({ from: account });
     }
 
     const SellerListedItemById = async () => {
         const token4 = document.getElementById("listedTokenId").value;
+        if (token4 === null || token4 === "") {
+            alert("Please put Index");
+            return false;
+        }
         const data = await window.contract2.methods.getItemById(token4).call();
         document.getElementById("URIDetails").innerHTML = `tokenURIDetails: ${data}`;
     }
 
     const removeNFTList = async () => {
         const deleteToken = document.getElementById("deletetokenId").value;
+        if (deleteToken === null || deleteToken === "") {
+            alert("Please put index which you want to delete");
+            return false;
+        }
         await window.contract2.methods.removeNFTList(deleteToken).send({ from: account });
     }
 
     const NFTBuyersList = async () => {
         const tokenIds12 = document.getElementById("buyerItemID").value;
         const amount = document.getElementById("buyerPrice").value;
+        if (tokenIds12 === null || tokenIds12 === "") {
+            alert("Please all fields");
+            return false;
+        }
         var balances = await Web3.utils.toWei(amount, 'ether');
         await window.contract2.methods.NFTBuyersList(tokenIds12, balances).send({ from: account });
     }
-
+   
     const buyerLists = async () => {
         const token5 = document.getElementById("buyerId").value;
+        if (token5 === null || token5 === "") {
+            alert("Please put index");
+            return false;
+        }
         const data = await window.contract2.methods.sellerAproved(token5).call();
         document.getElementById("buyerDetails").innerHTML = `tokenURIDetails: ${Object.values(data)}`;
     }
-
+    let tokenIds123;
+    let itemIdApproved;
     const ApproveBuyerBySeller = async () => {
-        const tokenIds = document.getElementById("selectedBuyerId").value;
-        const token8 = document.getElementById("buyerselectedItemId").value;
-        await window.contract2.methods.approveBuyer(tokenIds, token8).send({ from: account });
+         tokenIds123 = document.getElementById("selectedBuyerId").value;
+         itemIdApproved = document.getElementById("buyerselectedItemId").value;
+        if (tokenIds123 === null || tokenIds123 === "" ,itemIdApproved == null || itemIdApproved === "") {
+            alert("Please both fields");
+            return false;
+        }
+        await window.contract2.methods.approveBuyer(tokenIds123, itemIdApproved).send({ from: account });
     }
-
+   
     const FetchBuyerApprovedPrice = async () => {
-        const token5 = document.getElementById("fetchedBuyerId").value;
-        var datas = await window.contract2.methods.getBuyerPrice(token5).call();
+        const token11 = tokenIds123;
+        if (token11 == null || token11 === "") {
+            alert("Please put index");
+            return false;
+        }
+        var datas = await window.contract2.methods.getBuyerPrice(token11).call();
         document.getElementById("selectedPrice").innerHTML = `tokenURIDetails: ${datas}`;
 
     }
 
     const paymentForNFT = async (req, res, next) => {
-        const buyerIndex = document.getElementById("buyerPriceId").value;
-        const itemId = document.getElementById("NFTSelectedId").value;
+        const buyerIndex = tokenIds123;
+        const itemId = itemIdApproved;
+        if (buyerIndex == null || buyerIndex === "" , itemId === null || itemId === "") {
+            alert("Please fill both fields");
+            return false;
+        }
         const abiArray = ABI2;
         let myAddress = buyerIndex;
+        if (myAddress == null || myAddress === "" ) {
+            alert("fill buyerIndex");
+            return false;
+        }
         var contract = new window.web3.eth.Contract(abiArray, Address2);
         var getalluser = await contract.methods.getBuyerPrice(myAddress).call();
         let addressFrom = await window.contract1.methods.owner().call();
