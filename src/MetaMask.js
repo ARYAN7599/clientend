@@ -997,14 +997,14 @@ const MetaMask = () => {
                 code: 6000,
                 message: "User disconnected",
             });
-            // reset();
+            reset();
         } catch (e) {
         }
     }
-    // const reset = () => {
-    //     setAccount([]);
-    //     setSessions([]);
-    // };
+    const reset = () => {
+        // setAccount([]);
+        setSessions([]);
+    };
     const faucetAddress = '0x88250f772101179a4ecfaa4b92a983676a3ce445'
     const sendTransaction = () => provider.request({
         method: 'eth_sendTransaction',
