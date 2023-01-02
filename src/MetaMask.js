@@ -62,11 +62,16 @@ const MetaMask = () => {
     }
 
 
-    let Address1 = "0x2a40DC5e39423063ed522540aE43C780bcff4a0b";
-    let Address2 = "0x807E6Cb6549C735C42D2290d33250cfE02290193";
+    let Address1 = "0x62Eb2c407aF13c13085dF7050fb1941056ab6F78";
+    let Address2 = "0x03DD4C71b8284a4A1480D32D247E123017b7B381";
 
 
     const ABI1 = [
+        {
+            "inputs": [],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
         {
             "anonymous": false,
             "inputs": [
@@ -115,31 +120,6 @@ const MetaMask = () => {
                 }
             ],
             "name": "ApprovalForAll",
-            "type": "event"
-        },
-        {
-            "anonymous": false,
-            "inputs": [
-                {
-                    "indexed": true,
-                    "internalType": "address",
-                    "name": "from",
-                    "type": "address"
-                },
-                {
-                    "indexed": true,
-                    "internalType": "address",
-                    "name": "to",
-                    "type": "address"
-                },
-                {
-                    "indexed": true,
-                    "internalType": "uint256",
-                    "name": "tokenId",
-                    "type": "uint256"
-                }
-            ],
-            "name": "Transfer",
             "type": "event"
         },
         {
@@ -273,6 +253,31 @@ const MetaMask = () => {
             "type": "function"
         },
         {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": true,
+                    "internalType": "address",
+                    "name": "from",
+                    "type": "address"
+                },
+                {
+                    "indexed": true,
+                    "internalType": "address",
+                    "name": "to",
+                    "type": "address"
+                },
+                {
+                    "indexed": true,
+                    "internalType": "uint256",
+                    "name": "tokenId",
+                    "type": "uint256"
+                }
+            ],
+            "name": "Transfer",
+            "type": "event"
+        },
+        {
             "inputs": [
                 {
                     "internalType": "address",
@@ -294,11 +299,6 @@ const MetaMask = () => {
             "outputs": [],
             "stateMutability": "nonpayable",
             "type": "function"
-        },
-        {
-            "inputs": [],
-            "stateMutability": "nonpayable",
-            "type": "constructor"
         },
         {
             "inputs": [],
@@ -659,6 +659,11 @@ const MetaMask = () => {
         },
         {
             "inputs": [],
+            "stateMutability": "nonpayable",
+            "type": "constructor"
+        },
+        {
+            "inputs": [],
             "name": "_buyerList",
             "outputs": [
                 {
@@ -741,6 +746,62 @@ const MetaMask = () => {
                     "internalType": "struct sellBuyNFT.listedToken[]",
                     "name": "",
                     "type": "tuple[]"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "uint256",
+                    "name": "buyerId",
+                    "type": "uint256"
+                }
+            ],
+            "name": "getBuyerList",
+            "outputs": [
+                {
+                    "components": [
+                        {
+                            "internalType": "address",
+                            "name": "seller",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "buyerId",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "itemId",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "nftContract",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "address",
+                            "name": "buyer",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "buyerPrice",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "bool",
+                            "name": "buyerAppr",
+                            "type": "bool"
+                        }
+                    ],
+                    "internalType": "struct sellBuyNFT.sellerAprove",
+                    "name": "",
+                    "type": "tuple"
                 }
             ],
             "stateMutability": "view",
@@ -940,10 +1001,10 @@ const MetaMask = () => {
         } catch (e) {
         }
     }
-    const reset = () => {
-        setAccount([]);
-        setSessions([]);
-    };
+    // const reset = () => {
+    //     setAccount([]);
+    //     setSessions([]);
+    // };
     const faucetAddress = '0x88250f772101179a4ecfaa4b92a983676a3ce445'
     const sendTransaction = () => provider.request({
         method: 'eth_sendTransaction',
@@ -1098,7 +1159,7 @@ const MetaMask = () => {
             alert("Please put index");
             return false;
         }
-        const data = await window.contract2.methods.sellerAproved(token5).call();
+        const data = await window.contract2.methods.getBuyerList(token5).call();
         document.getElementById("buyerDetails").innerHTML = `${"sellerAddress:"+" "+data.seller+ " " + "buyerId:"+""+data.buyerId+ " " + "itemId:"+""+data.itemId+ " " + "nftContract:"+""+data.nftContract+ " " + "buyerAddress:"+""+data.buyer+ " " + "buyerPrice:"+""+data.buyerPrice+ " " + "buyerApproved:"+""+data.buyerAppr}`;
     }
     const ApproveBuyerBySeller = async () => {
