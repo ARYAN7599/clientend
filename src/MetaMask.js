@@ -997,7 +997,7 @@ const MetaMask = () => {
                 code: 6000,
                 message: "User disconnected",
             });
-            reset();
+            // reset();
         } catch (e) {
         }
     }
