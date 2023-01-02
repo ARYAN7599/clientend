@@ -1099,7 +1099,7 @@ const MetaMask = () => {
             return false;
         }
         const data = await window.contract2.methods.sellerAproved(token5).call();
-        document.getElementById("buyerDetails").innerHTML = `${"sellerAddress:"+" "+data.seller+ " " + "buyerId:"+""+data.buyerId+ " " + "itemId:"+""+data.itemId+ " " + "nftContract:"+""+data.nftContract+ " " + "buyerAddress:"+""+data.buyer+ " " + "buyerPrice:"+""+data.buyerPrice+ " " + "buyerApproved:"+""+data.buyerAppr}`;
+        document.getElementById("buyerDetails").innerHTML = `${"sellerAddress:"+" "+data.seller+ " "<br> + "buyerId:"+""+data.buyerId+ " "<br> + "itemId:"+""+data.itemId+ " "<br> + "nftContract:"+""+data.nftContract+ " "<br> + "buyerAddress:"+""+data.buyer+ " "<br> + "buyerPrice:"+""+data.buyerPrice+ " "<br> + "buyerApproved:"+""+data.buyerAppr}`;
     }
     const ApproveBuyerBySeller = async () => {
         const tokenIds123 = document.getElementById("selectedBuyerId").value;
