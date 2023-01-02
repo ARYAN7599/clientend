@@ -62,8 +62,8 @@ const MetaMask = () => {
     }
 
 
-    let Address1 = "0x7ae377A5a1C04411dc2b2E9c71199f5091aB2962";
-    let Address2 = "0x4BDe51392fd947aed028a1d0afd3C2Ac774f9C64";
+    let Address1 = "0x2a40DC5e39423063ed522540aE43C780bcff4a0b";
+    let Address2 = "0x807E6Cb6549C735C42D2290d33250cfE02290193";
 
 
     const ABI1 = [
@@ -1068,8 +1068,8 @@ const MetaMask = () => {
             alert("Please put Index");
             return false;
         }
-        const data = await window.contract2.methods.getItemById(token4).call();
-        document.getElementById("URIDetails").innerHTML = `tokenURIDetails: ${data}`;
+        const data = await window.contract2.methods.listedTokens(token4).call();
+        document.getElementById("URIDetails").innerHTML = `${"nftContract:"+" "+data.nftContract+ " " + "tokenId:"+""+data.tokenId+ " " + "ownerAddress:"+""+data.owner+ " " + "sellerAddress:"+""+data.seller+ " " + "price:"+""+data.price+ " " + "currentlyListed:"+""+data.currentlyListed}`;
     }
 
     const removeNFTList = async () => {
@@ -1099,7 +1099,7 @@ const MetaMask = () => {
             return false;
         }
         const data = await window.contract2.methods.sellerAproved(token5).call();
-        document.getElementById("buyerDetails").innerHTML = `tokenURIDetails: ${Object.values(data)}`;
+        document.getElementById("buyerDetails").innerHTML = `${"sellerAddress:"+" "+data.seller+ " " + "buyerId:"+""+data.buyerId+ " " + "itemId:"+""+data.itemId+ " " + "nftContract:"+""+data.nftContract+ " " + "buyerAddress:"+""+data.buyer+ " " + "buyerPrice:"+""+data.buyerPrice+ " " + "buyerApproved:"+""+data.buyerAppr}`;
     }
     const ApproveBuyerBySeller = async () => {
         const tokenIds123 = document.getElementById("selectedBuyerId").value;
