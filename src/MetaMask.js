@@ -1129,8 +1129,9 @@ const MetaMask = () => {
             alert("Please put Index");
             return false;
         }
+        const nftDetail = await window.contract1.methods.nfts(token4).call();
         const data = await window.contract2.methods.listedTokens(token4).call();
-        document.getElementById("URIDetails").innerHTML = `${"nftContract:"+" "+data.nftContract+ " " + "tokenId:"+""+data.tokenId+ " " + "ownerAddress:"+""+data.owner+ " " + "sellerAddress:"+""+data.seller+ " " + "price:"+""+data.price+ " " + "currentlyListed:"+""+data.currentlyListed}`;
+        document.getElementById("URIDetails").innerHTML = `${"itemId:"+" "+data.itemId+ " " +"nftName:"+" "+nftDetail.imageName+ " " +  "nftContract:"+" "+data.nftContract+ " " + "tokenId:"+""+data.tokenId+ " " + "ownerAddress:"+""+data.owner+ " " + "sellerAddress:"+""+data.seller+ " " + "price:"+""+data.price+ " " + "currentlyListed:"+""+data.currentlyListed}`;
     }
 
     const removeNFTList = async () => {
