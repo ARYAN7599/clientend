@@ -65,12 +65,11 @@ const MetaMask = () => {
     }
 
     const get = async () => {
-        axios.get("http://139.59.65.197:5000").then((res) => {
+        axios.get("http://139.59.65.197:5000/public/uploads/").then((res) => {
             setPost(res.data);
         });
     }
     const handleClick = () => { }
-
 
     let Address1 = "0x55b1944283b3eDE77371D01f4E7A9c20E9D96FFe";
     let Address2 = "0x8Ca2782Da399d979865d93bc435Ea064C9c86a63";
