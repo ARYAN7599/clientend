@@ -51,7 +51,7 @@ const MetaMask = () => {
         const formdata = new FormData();
         formdata.append('myFile', userInfo.file);
 
-        axios.post("http://139.59.65.197:5000/var/lib/jenkins/workspace/projectserver/public/uploads", formdata, {
+        axios.post("http://139.59.65.197:5000", formdata, {
             headers: { "Content-Type": "multipart/form-data" }
         })
             .then(res => {
