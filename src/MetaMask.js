@@ -4,6 +4,8 @@ import WalletConnectProvider from '@walletconnect/web3-provider'
 import axios from 'axios';
 import Web3 from "web3";
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container, Col, Row, Image } from 'react-bootstrap'
 
 const rLogin = new RLogin({
     cachedProvider: false,
@@ -27,6 +29,7 @@ const MetaMask = () => {
     let [account, setAccount] = useState('');
     const [txHash, setTxHash] = useState('');
     const [imagePath, setPath] = useState('');
+    const [imageArray, setPost] = React.useState(null);
     const [imageName, setImageName] = useState('');
     const [userInfo, setuserInfo] = useState({
         file: [],
@@ -61,9 +64,16 @@ const MetaMask = () => {
             });
     }
 
+    const get = async () => {
+        axios.get("http://139.59.65.197:5000").then((res) => {
+            setPost(res.data);
+        });
+    }
+    const handleClick = () => { }
 
-    let Address1 = "0x62Eb2c407aF13c13085dF7050fb1941056ab6F78";
-    let Address2 = "0x03DD4C71b8284a4A1480D32D247E123017b7B381";
+
+    let Address1 = "0x55b1944283b3eDE77371D01f4E7A9c20E9D96FFe";
+    let Address2 = "0x8Ca2782Da399d979865d93bc435Ea064C9c86a63";
 
 
     const ABI1 = [
@@ -1238,7 +1248,24 @@ const MetaMask = () => {
 
                     <a href={imagePath} target="_blank"  rel="noreferrer"><img className="previewimg" src={imagePath} alt="UploadImage" /></a>
                     <p>{imageName}</p>
-
+                </div>
+                <button type="get" className="btn btn-dark" onClick={() => get()} > get </button>
+                <div>
+                <Container>
+                        <Row>
+                        {Array.isArray(imageArray)
+        
+                            ? imageArray.map((data, index) => (
+                            <Col md={4} key={index} >
+                            <div className="img-card" onClick={() => handleClick(data)}>
+                                <Image style={{ width: '300px', height: "300px" }} thumbnail src={data} />
+                            </div>
+                            </Col>
+                            )
+                            )
+                            : null}
+                        </Row>
+                    </Container>
                 </div>
 
                 <h1>MetaMask Wallet Connection</h1>
