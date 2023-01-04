@@ -65,7 +65,7 @@ const MetaMask = () => {
     }
 
     const get = async () => {
-        axios.get("http://139.59.65.197:5000").then((res) => {
+        axios.get("http://139.59.65.197:5000/public/uploads/").then((res) => {
             setPost(res.data);
         });
     }
