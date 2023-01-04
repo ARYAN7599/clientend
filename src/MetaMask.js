@@ -51,7 +51,7 @@ const MetaMask = () => {
         const formdata = new FormData();
         formdata.append('myFile', userInfo.file);
 
-        axios.post("http://139.59.65.197:5000", formdata, {
+        axios.post("http://139.59.65.197:5000/imageupload", formdata, {
             headers: { "Content-Type": "multipart/form-data" }
         })
             .then(res => {
