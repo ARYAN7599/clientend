@@ -1165,7 +1165,7 @@ const MetaMask = () => {
         }
         var contract = new window.web3.eth.Contract(abiArray, Address2);
         var getalluser = await contract.methods.getBuyerPrice(myAddress).call();
-        // let addressFrom = await window.contract1.methods.owner().call();
+        //// let addressFrom = await window.contract1.methods.owner().call();
         await window.contract2.methods.paymentForNFT(buyerIndex, itemId).send({ from: account , value: getalluser.toString()});
         // let params = [{
         //     "from": account,
