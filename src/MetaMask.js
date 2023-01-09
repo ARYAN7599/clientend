@@ -4,9 +4,6 @@ import WalletConnectProvider from '@walletconnect/web3-provider'
 import axios from 'axios';
 import Web3 from "web3";
 import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Col, Row, Image } from 'react-bootstrap'
-
 const rLogin = new RLogin({
     cachedProvider: false,
     providerOptions: {
@@ -21,36 +18,28 @@ const rLogin = new RLogin({
     },
     supportedChains: [60457]
 })
-
-
 const MetaMask = () => {
     const [provider, setProvider] = useState(null);
     const [sessions, setSessions] = useState([]);
     let [account, setAccount] = useState('');
     const [txHash, setTxHash] = useState('');
     const [imagePath, setPath] = useState('');
-    const [imageArray, setPost] = React.useState(null);
     const [imageName, setImageName] = useState('');
     const [userInfo, setuserInfo] = useState({
         file: [],
         filepreview: null,
     });
-
     const imageUpload = (event) => {
         setuserInfo({
             ...userInfo,
             file: event.target.files[0],
             filepreview: URL.createObjectURL(event.target.files[0]),
         });
-
     }
-
     const [isSucces, setSuccess] = useState(null);
-
     const submit = async () => {
         const formdata = new FormData();
         formdata.append('myFile', userInfo.file);
-
         axios.post("http://139.59.65.197:5000/imageupload", formdata, {
             headers: { "Content-Type": "multipart/form-data" }
         })
@@ -63,18 +52,8 @@ const MetaMask = () => {
                 }
             });
     }
-//dd
-    const get = async () => {
-        axios.get("http://139.59.65.197:5000").then((res) => {
-            setPost(res.data);
-        });
-    }
-    const handleClick = () => { }
-
-    let Address1 = "0x55b1944283b3eDE77371D01f4E7A9c20E9D96FFe";
-    let Address2 = "0x8Ca2782Da399d979865d93bc435Ea064C9c86a63";
-
-
+    let Address1 = "0xF7cB95321fDB9D5C1C7c12462Ec6B225ebbF8b30";
+    let Address2 = "0x8f5d8a1Cc24EE5F58502717ffd2055B17b09517a";
     const ABI1 = [
         {
             "inputs": [],
@@ -990,14 +969,11 @@ const MetaMask = () => {
             "type": "function"
         }
     ]
-
-
     const connect = () => rLogin.connect()
         .then(({ provider }) => {
             setProvider(provider)
             const accounts = provider.request({ method: 'eth_accounts' }).then(([account]) => setAccount(account))
             account = accounts[0];
-
         })
     async function handleDisconnect() {
         try {
@@ -1019,8 +995,6 @@ const MetaMask = () => {
         method: 'eth_sendTransaction',
         params: [{ from: account, to: faucetAddress, value: '10000' }]
     }).then(setTxHash)
-
-
     const connectContract1 = async () => {
         window.web3 = await new Web3(provider);
         window.contract1 = await new window.web3.eth.Contract(ABI1, Address1);
@@ -1031,18 +1005,15 @@ const MetaMask = () => {
         window.contract2 = await new window.web3.eth.Contract(ABI2, Address2);
         document.getElementById("contract2Id").innerHTML = "Connection Status: Success";
     }
-
     const owner = async () => {
         const data = await window.contract1.methods.owner().call();
         document.getElementById("ownerId").innerHTML = `Owner: ${data}`;
     }
-
     const NFt_Details = async () => {
         const Details = (document.getElementById("nftId").value);
         const nftDetail = await window.contract1.methods.nfts(Details).call();
         document.getElementById("detailsId").innerHTML = `${"ImageName:"+" "+nftDetail.imageName+ " " + "tokenURI:"+""+nftDetail.tokenURI}`;
     }
-
     const NFTMint = async () => {
         const Image = (document.getElementById("imageId").value);
         const myEntry = imagePath;
@@ -1052,7 +1023,6 @@ const MetaMask = () => {
         }
         await window.contract1.methods.NFTMint(Image, myEntry).send({ from: account });
     }
-
     let encodeURL;
     const getEncodedURL = async () => {
         const myEntry = document.getElementById("encodeId").value;
@@ -1062,9 +1032,7 @@ const MetaMask = () => {
         }
         encodeURL = await window.contract1.methods.getEncodedURL(myEntry).call();
         document.getElementById("encodeIded").innerHTML = `encode: ${encodeURL}`;
-
     }
-
     const NFTdecode = async () => {
         const encode = document.getElementById("encodeIid").value;
         if (encode === null || encode === "") {
@@ -1074,32 +1042,26 @@ const MetaMask = () => {
         const myEntry = await window.contract1.methods.getEncodedURL(encode).call();
         await window.contract1.methods.decodeNFTurl(myEntry).send({ from: account });
     }
-
     const getURIdecoded = async () => {
         const data = await window.contract1.methods.URIdecoded().call();
         document.getElementById("URIdecodedId").innerHTML = `URIdecoded: ${data}`;
     }
-
     const mintedNFTtokenIds = async () => {
         const data = await window.contract1.methods._tokenIds().call();
         document.getElementById("tokenIds").innerHTML = `_tokenIds: ${data}`;
     }
-
     const listedNFTtokenIds = async () => {
         const data = await window.contract2.methods._tokenIds().call();
         document.getElementById("listedNFTId").innerHTML = `_tokenIds: ${data}`;
     }
-
     const numberOfNFTsolded = async () => {
         const data = await window.contract2.methods._itemsSold().call();
         document.getElementById("soldIds").innerHTML = `_tokenIds: ${data}`;
     }
-
     const NFTBuyered = async () => {
         const data = await window.contract2.methods._buyerList().call();
         document.getElementById("buyerIds").innerHTML = `_tokenIds: ${data}`;
     }
-
     const NFTtokenURL = async () => {
         const token = document.getElementById("mintedId").value;
         if (token === null || token === "") {
@@ -1109,7 +1071,6 @@ const MetaMask = () => {
         const data = await window.contract1.methods.tokenURI(token).call();
         document.getElementById("mintedNFTId").innerHTML = `tokenURIs: ${data}`;
     }
-
     const ApproveTheNFt = async () => {
         const nftContract = Address2;
         const tokenIds = document.getElementById("approveMintId").value;
@@ -1119,7 +1080,6 @@ const MetaMask = () => {
         }
         await window.contract1.methods.approve(nftContract, tokenIds).send({ from: account });
     }
-
     const SellerListingNFT = async () => {
         const nftContract1 = Address1;
         const tokenIds1 = document.getElementById("sellerNFTId").value;
@@ -1131,7 +1091,6 @@ const MetaMask = () => {
         }
         await window.contract2.methods.listTheNFTs(nftContract1, tokenIds1, balances).send({ from: account });
     }
-
     const SellerListedItemById = async () => {
         const token4 = document.getElementById("listedTokenId").value;
         if (token4 === null || token4 === "") {
@@ -1140,6 +1099,7 @@ const MetaMask = () => {
         }
         const nftDetail = await window.contract1.methods.nfts(token4).call();
         const data = await window.contract2.methods.listedTokens(token4).call();
+        document.getElementById("URIDetails").innerHTML = `${"nftContract:"+" "+data.nftContract+ " " + "tokenId:"+""+data.tokenId+ " " + "ownerAddress:"+""+data.owner+ " " + "sellerAddress:"+""+data.seller+ " " + "price:"+""+data.price+ " " + "currentlyListed:"+""+data.currentlyListed}`;
         document.getElementById("URIDetails").innerHTML = `${"itemId:"+" "+data.itemId+ " " +"nftName:"+" "+nftDetail.imageName+ " " +  "nftContract:"+" "+data.nftContract+ " " + "tokenId:"+""+data.tokenId+ " " + "ownerAddress:"+""+data.owner+ " " + "sellerAddress:"+""+data.seller+ " " + "price:"+""+data.price+ " " + "currentlyListed:"+""+data.currentlyListed}`;
     }
 
@@ -1151,7 +1111,6 @@ const MetaMask = () => {
         }
         await window.contract2.methods.removeNFTList(deleteToken).send({ from: account });
     }
-
     const NFTBuyersList = async () => {
         const tokenIds12 = document.getElementById("buyerItemID").value;
         const amount = document.getElementById("buyerPrice").value;
@@ -1169,7 +1128,7 @@ const MetaMask = () => {
             alert("Please put index");
             return false;
         }
-        const data = await window.contract2.methods.getBuyerList(token5).call();
+        const data = await window.contract2.methods.sellerAproved(token5).call();
         document.getElementById("buyerDetails").innerHTML = `${"sellerAddress:"+" "+data.seller+ " " + "buyerId:"+""+data.buyerId+ " " + "itemId:"+""+data.itemId+ " " + "nftContract:"+""+data.nftContract+ " " + "buyerAddress:"+""+data.buyer+ " " + "buyerPrice:"+""+data.buyerPrice+ " " + "buyerApproved:"+""+data.buyerAppr}`;
     }
     const ApproveBuyerBySeller = async () => {
@@ -1190,9 +1149,7 @@ const MetaMask = () => {
         }
         var datas = await window.contract2.methods.getBuyerPrice(token11).call();
         document.getElementById("selectedPrice").innerHTML = `tokenURIDetails: ${datas}`;
-
     }
-
     const paymentForNFT = async (req, res, next) => {
         const buyerIndex = document.getElementById("NFTpaymentId").value;
         const itemId = document.getElementById("NFTpaymentId1").value;
@@ -1208,25 +1165,21 @@ const MetaMask = () => {
         }
         var contract = new window.web3.eth.Contract(abiArray, Address2);
         var getalluser = await contract.methods.getBuyerPrice(myAddress).call();
-        let addressFrom = await window.contract1.methods.owner().call();
-
-        let params = [{
-            "from": account,
-            "to": addressFrom,
-            "gas": Number(21000).toString(16),
-            "gasPrice": Number(2500000).toString(16),
-            "value": Number(getalluser).toString(16),
-        }]
-
-        await window.ethereum.request({ method: "eth_sendTransaction", params }).catch((err => {
-        }));
-        await window.contract2.methods.paymentForNFT(buyerIndex, itemId).send({ from: account });
-
+        // let addressFrom = await window.contract1.methods.owner().call();
+        await window.contract2.methods.paymentForNFT(buyerIndex, itemId).send({ from: account , value: getalluser.toString()});
+        // let params = [{
+        //     "from": account,
+        //     "to": addressFrom,
+        //     "gas": Number(21000).toString(16),
+        //     "gasPrice": Number(2500000).toString(16),
+        //     "value": Number(getalluser).toString(16),
+        // }]
+        // await window.ethereum.request({ method: "eth_sendTransaction", params }).catch((err => {
+        // }));
+        
     }
-
     return (
         <div>
-
             <h4><b><i>
                 <center>NFT MarketPlace</center>
             </i></b></h4>
@@ -1244,40 +1197,17 @@ const MetaMask = () => {
                             <button type="submit" className="btn btn-dark" onClick={() => submit()} > Save </button>
                         </div>
                     </div>
-
                     <a href={imagePath} target="_blank"  rel="noreferrer"><img className="previewimg" src={imagePath} alt="UploadImage" /></a>
                     <p>{imageName}</p>
                 </div>
-                <button type="get" className="btn btn-dark" onClick={() => get()} > get </button>
-                <div>
-                <Container>
-                        <Row>
-                        {Array.isArray(imageArray)
-        
-                            ? imageArray.map((data, index) => (
-                            <Col md={4} key={index} >
-                            <div className="img-card" onClick={() => handleClick(data)}>
-                                <Image style={{ width: '300px', height: "300px" }} thumbnail src={data} />
-                            </div>
-                            </Col>
-                            )
-                            )
-                            : null}
-                        </Row>
-                    </Container>
-                </div>
-
                 <h1>MetaMask Wallet Connection</h1>
-
                 <div className="row align-items-start">
                     <RLoginButton onClick={connect}>Connect wallet Address</RLoginButton>
                     <p>wallet address: {account}</p>
                     <button onClick={handleDisconnect}>Disconnect</button>
                     <div className="col">
-
                         <button onClick={sendTransaction} disabled={!account}>send transaction</button>
                         <p>txHash: {txHash}</p>
-
                     </div>
                     <div className="col">
                         <button onClick={connectContract1}>CONNECT TO CONTRACT1</button>
@@ -1293,13 +1223,11 @@ const MetaMask = () => {
                         <button onClick={owner}>get owner of the Smart Contract</button>
                         <p id="ownerId" className="inputs">Owner of Smart Contract </p>
                     </div>
-
                     <div className="col">
                         <button onClick={NFt_Details}>get_NFTs</button>
                         <input type="text" className="inputs" placeholder="NFTIndex" id="nftId" />
                         <p id="detailsId" className="inputs">details NFt </p>
                     </div>
-
                     <div className="col">
                         <button onClick={NFTMint}>Mint CONTRACT URI</button>
                         <input type="text" className="inputs" placeholder="ImageName" id="imageId" />
@@ -1309,7 +1237,6 @@ const MetaMask = () => {
                         <input type="text" className="inputs" placeholder="EncodedURIId" id="encodeId" />
                         <p id="encodeIded" className="inputs">encode url of Smart Contract </p>
                     </div>
-
                     <div className="col">
                         <button onClick={NFTdecode}>decode CONTRACT URI</button>
                         <input type="text" className="inputs" placeholder="decodeURIId" id="encodeIid" />
@@ -1349,7 +1276,6 @@ const MetaMask = () => {
                     </div>
                     <div className="col">
                         <button onClick={SellerListingNFT}>listTheNFTs CONTRACT URI</button>
-
                         <input type="text" className="inputs" placeholder="listTheNFTId" id="sellerNFTId" />
                         <input type="text" className="inputs" placeholder="amount" id="sellerGivenPrice" />
                     </div>
@@ -1399,12 +1325,7 @@ const MetaMask = () => {
                     </div>
                 </div>
             </div>
-
         </div>
-
     )
 }
-
-
-
 export default MetaMask;
