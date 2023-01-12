@@ -1,11 +1,10 @@
+
 import React, { useState } from "react";
 import RLogin, { RLoginButton } from '@rsksmart/rlogin'
 import WalletConnectProvider from '@walletconnect/web3-provider'
 import Web3 from "web3";
 import './metaMask.scss';
 import { ethers } from "ethers";
-
-// var isDes = false;
 
 const rLogin = new RLogin({
     cachedProvider: false,
@@ -947,7 +946,6 @@ const MetaMask = () => {
     ]
     const connect = () => rLogin.connect()
         .then(({ provider }) => {
-            // isDes = true;
             setProvider(provider)
             const accounts = provider.request({ method: 'eth_accounts' }).then(([account]) => setAccount(account))
             account = accounts[0];
@@ -992,6 +990,7 @@ const MetaMask = () => {
         const data = await window.contract1.methods.owner().call();
         document.getElementById("ownerId").innerHTML = `Owner: ${data}`;
     }
+     /*eslint-disable*/
     const NFt_Details = async () => {
         const Details = (document.getElementById("nftId").value);
         const nftDetail = await window.contract1.methods.nfts(Details).call();
@@ -1101,7 +1100,7 @@ const MetaMask = () => {
             alert("Please all fields");
             return false;
         }
-        var balances = await Web3.utils.toWei(amount, 'ether');
+        let balances = await Web3.utils.toWei(amount, 'ether');
         await window.contract2.methods.NFTBuyersList(tokenIds12, balances).send({ from: account });
     }
 
@@ -1114,6 +1113,7 @@ const MetaMask = () => {
         const data = await window.contract2.methods.sellerAproved(token5).call();
         document.getElementById("buyerDetails").innerHTML = `${"sellerAddress:" + " " + data.seller + " " + "buyerId:" + "" + data.buyerId + " " + "itemId:" + "" + data.itemId + " " + "nftContract:" + "" + data.nftContract + " " + "buyerAddress:" + "" + data.buyer + " " + "buyerPrice:" + "" + data.buyerPrice + " " + "buyerApproved:" + "" + data.buyerAppr}`;
     }
+     
     const ApproveBuyerBySeller = async () => {
         const tokenIds123 = document.getElementById("selectedBuyerId").value;
         const itemIdApproved = document.getElementById("buyerselectedItemId").value;
@@ -1130,7 +1130,7 @@ const MetaMask = () => {
             alert("Please put index");
             return false;
         }
-        var datas = await window.contract2.methods.getBuyerPrice(token11).call();
+        let datas = await window.contract2.methods.getBuyerPrice(token11).call();
         document.getElementById("selectedPrice").innerHTML = `tokenURIDetails: ${datas}`;
     }
     const paymentForNFT = async (req, res, next) => {
@@ -1140,14 +1140,15 @@ const MetaMask = () => {
             alert("Please fill both fields");
             return false;
         }
+        /*eslint-enable*/
         const abiArray = ABI2;
         let myAddress = buyerIndex;
         if (myAddress == null || myAddress === "") {
             alert("fill buyerIndex");
             return false;
         }
-        var contract = new window.web3.eth.Contract(abiArray, Address2);
-        var getalluser = await contract.methods.getBuyerPrice(myAddress).call();
+        let contract = new window.web3.eth.Contract(abiArray, Address2);
+        let getalluser = await contract.methods.getBuyerPrice(myAddress).call();
         await window.contract2.methods.paymentForNFT(buyerIndex, itemId).send({ from: account, value: getalluser.toString() });
 
     }
@@ -1222,7 +1223,6 @@ const MetaMask = () => {
                         <p id="URIdecodedId" className="inputs">URIdecoded of Smart Contract </p>
                     </div>
                     <br />
-                    {/* <div  className="row align-items-start"> */}
                     <div className="col">
                         <button onClick={mintedNFTtokenIds}>mintedNFT count </button><br />
                         <p id="tokenIds" className="inputs">mintedNFTtoken </p>
@@ -1242,7 +1242,6 @@ const MetaMask = () => {
                         <button onClick={NFTBuyered}>NFTBuyered </button><br />
                         <p id="buyerIds" className="inputs">NFTBuyered no. </p>
                     </div>
-                    {/* </div> */}
                     <br />
                     <div className="col">
                         <input type="text" className="inputs" placeholder="tokenURIId" id="mintedId" /><br />
