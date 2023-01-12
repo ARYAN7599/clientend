@@ -969,7 +969,6 @@ const MetaMask = () => {
     }
     const reset = () => {
         setAccount([]);
-        setSessions([]);
     };
     const faucetAddress = '0x88250f772101179a4ecfaa4b92a983676a3ce445'
     const sendTransaction = () => provider.request({
