@@ -11,7 +11,7 @@ const FileList = ({ files, getFile }) => {
             .then((res) => getFile(baseURL+"images/"+_name))
             .catch((err) => console.error(err));
     }
-    const [imageArray, setPost] = React.useState(null);
+    const [imageArray, setPost] = useState(null);
     const get = async () => {
         axios.get(baseURL).then((res) => {
             setPost(res.data);
