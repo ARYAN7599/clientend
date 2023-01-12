@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import './FileUpload.scss'
 import axios from 'axios'
-const baseURL= "http://139.59.65.197:5000/";
 
 const FileUpload = ({ files, setFiles, getFile }) => {
     const uploadHandler = (event) => {

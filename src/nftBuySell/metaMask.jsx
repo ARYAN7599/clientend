@@ -5,6 +5,8 @@ import Web3 from "web3";
 import './metaMask.scss';
 import { ethers } from "ethers";
 
+// var isDes = false;
+
 const rLogin = new RLogin({
     cachedProvider: false,
     providerOptions: {
@@ -945,6 +947,7 @@ const MetaMask = () => {
     ]
     const connect = () => rLogin.connect()
         .then(({ provider }) => {
+            // isDes = true;
             setProvider(provider)
             const accounts = provider.request({ method: 'eth_accounts' }).then(([account]) => setAccount(account))
             account = accounts[0];
@@ -968,6 +971,7 @@ const MetaMask = () => {
     }
     const reset = () => {
         setAccount([]);
+        // setSessions([]);
     };
     const faucetAddress = '0x88250f772101179a4ecfaa4b92a983676a3ce445'
     const sendTransaction = () => provider.request({
@@ -1157,7 +1161,7 @@ const MetaMask = () => {
                 <h1>MetaMask Wallet Connection</h1>
                 <div className="column align-items-start">
                     <div className="col">
-                        <RLoginButton onClick={connect}>Connect wallet Address</RLoginButton>
+                        <RLoginButton onClick={connect} >Connect wallet Address</RLoginButton>
                         <p>wallet address: {account}</p>
                     </div>
                     <br />
