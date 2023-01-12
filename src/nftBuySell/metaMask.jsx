@@ -22,7 +22,7 @@ const rLogin = new RLogin({
 })
 const MetaMask = () => {
     const [provider, setProvider] = useState(null);
-    const [sessions, setSessions] = useState([]);
+    // const [sessions, setSessions] = useState([]);
     let [account, setAccount] = useState('');
     const [txHash, setTxHash] = useState('');
     const [balance, setBalance] = useState();
@@ -958,8 +958,7 @@ const MetaMask = () => {
     };
     async function handleDisconnect() {
         try {
-            await provider.disconnect({
-                topic: sessions.topic,
+            await provider.disconnect({ 
                 code: 6000,
                 message: "User disconnected",
             });
