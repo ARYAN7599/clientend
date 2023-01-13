@@ -27,8 +27,8 @@ const MetaMask = () => {
     const [txHash, setTxHash] = useState('');
     const [balance, setBalance] = useState();
 
-    let Address1 = "0x7543F199B9e3b533131caAefD51ebc20E3d2DB3C";
-    let Address2 = "0x4613bB88A3D1C9D4f6dB627F5d492dE1B42b3c7c";
+    let Address1 = "0x88B229392fa922a5D489c87a912F96BbEA8c1d5f";
+    let Address2 = "0x9095d19654054E3a057062250458470C2a9FF1B0";
     const ABI1 = [
         {
             "inputs": [],
@@ -86,136 +86,6 @@ const MetaMask = () => {
             "type": "event"
         },
         {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "to",
-                    "type": "address"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "tokenId",
-                    "type": "uint256"
-                }
-            ],
-            "name": "approve",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "bytes",
-                    "name": "data",
-                    "type": "bytes"
-                }
-            ],
-            "name": "decodeNFTurl",
-            "outputs": [
-                {
-                    "internalType": "string",
-                    "name": "",
-                    "type": "string"
-                }
-            ],
-            "stateMutability": "payable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "string",
-                    "name": "_imageName",
-                    "type": "string"
-                },
-                {
-                    "internalType": "string",
-                    "name": "_tokenURI",
-                    "type": "string"
-                }
-            ],
-            "name": "NFTMint",
-            "outputs": [
-                {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                }
-            ],
-            "stateMutability": "payable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "from",
-                    "type": "address"
-                },
-                {
-                    "internalType": "address",
-                    "name": "to",
-                    "type": "address"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "tokenId",
-                    "type": "uint256"
-                }
-            ],
-            "name": "safeTransferFrom",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "from",
-                    "type": "address"
-                },
-                {
-                    "internalType": "address",
-                    "name": "to",
-                    "type": "address"
-                },
-                {
-                    "internalType": "uint256",
-                    "name": "tokenId",
-                    "type": "uint256"
-                },
-                {
-                    "internalType": "bytes",
-                    "name": "data",
-                    "type": "bytes"
-                }
-            ],
-            "name": "safeTransferFrom",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
-            "inputs": [
-                {
-                    "internalType": "address",
-                    "name": "operator",
-                    "type": "address"
-                },
-                {
-                    "internalType": "bool",
-                    "name": "approved",
-                    "type": "bool"
-                }
-            ],
-            "name": "setApprovalForAll",
-            "outputs": [],
-            "stateMutability": "nonpayable",
-            "type": "function"
-        },
-        {
             "anonymous": false,
             "inputs": [
                 {
@@ -243,24 +113,38 @@ const MetaMask = () => {
         {
             "inputs": [
                 {
-                    "internalType": "address",
-                    "name": "from",
-                    "type": "address"
+                    "internalType": "string",
+                    "name": "_imageName",
+                    "type": "string"
                 },
                 {
-                    "internalType": "address",
-                    "name": "to",
-                    "type": "address"
-                },
+                    "internalType": "string",
+                    "name": "_tokenURI",
+                    "type": "string"
+                }
+            ],
+            "name": "NFTMint",
+            "outputs": [
                 {
                     "internalType": "uint256",
-                    "name": "tokenId",
+                    "name": "",
                     "type": "uint256"
                 }
             ],
-            "name": "transferFrom",
-            "outputs": [],
-            "stateMutability": "nonpayable",
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "inputs": [],
+            "name": "URIdecoded",
+            "outputs": [
+                {
+                    "internalType": "string",
+                    "name": "",
+                    "type": "string"
+                }
+            ],
+            "stateMutability": "view",
             "type": "function"
         },
         {
@@ -280,6 +164,24 @@ const MetaMask = () => {
             "inputs": [
                 {
                     "internalType": "address",
+                    "name": "to",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "tokenId",
+                    "type": "uint256"
+                }
+            ],
+            "name": "approve",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
                     "name": "owner",
                     "type": "address"
                 }
@@ -290,6 +192,44 @@ const MetaMask = () => {
                     "internalType": "uint256",
                     "name": "",
                     "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "bytes",
+                    "name": "data",
+                    "type": "bytes"
+                }
+            ],
+            "name": "decodeNFTurl",
+            "outputs": [
+                {
+                    "internalType": "string",
+                    "name": "",
+                    "type": "string"
+                }
+            ],
+            "stateMutability": "payable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "name": "encodeURI",
+            "outputs": [
+                {
+                    "internalType": "bytes",
+                    "name": "",
+                    "type": "bytes"
                 }
             ],
             "stateMutability": "view",
@@ -318,19 +258,13 @@ const MetaMask = () => {
             "inputs": [
                 {
                     "internalType": "address",
-                    "name": "",
+                    "name": "_user",
                     "type": "address"
                 }
             ],
-            "name": "encodeURI",
-            "outputs": [
-                {
-                    "internalType": "bytes",
-                    "name": "",
-                    "type": "bytes"
-                }
-            ],
-            "stateMutability": "view",
+            "name": "getApprovalByOwner",
+            "outputs": [],
+            "stateMutability": "nonpayable",
             "type": "function"
         },
         {
@@ -467,6 +401,75 @@ const MetaMask = () => {
         {
             "inputs": [
                 {
+                    "internalType": "address",
+                    "name": "from",
+                    "type": "address"
+                },
+                {
+                    "internalType": "address",
+                    "name": "to",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "tokenId",
+                    "type": "uint256"
+                }
+            ],
+            "name": "safeTransferFrom",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "from",
+                    "type": "address"
+                },
+                {
+                    "internalType": "address",
+                    "name": "to",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "tokenId",
+                    "type": "uint256"
+                },
+                {
+                    "internalType": "bytes",
+                    "name": "data",
+                    "type": "bytes"
+                }
+            ],
+            "name": "safeTransferFrom",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "operator",
+                    "type": "address"
+                },
+                {
+                    "internalType": "bool",
+                    "name": "approved",
+                    "type": "bool"
+                }
+            ],
+            "name": "setApprovalForAll",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
                     "internalType": "bytes4",
                     "name": "interfaceId",
                     "type": "bytes4"
@@ -516,13 +519,42 @@ const MetaMask = () => {
             "type": "function"
         },
         {
-            "inputs": [],
-            "name": "URIdecoded",
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "from",
+                    "type": "address"
+                },
+                {
+                    "internalType": "address",
+                    "name": "to",
+                    "type": "address"
+                },
+                {
+                    "internalType": "uint256",
+                    "name": "tokenId",
+                    "type": "uint256"
+                }
+            ],
+            "name": "transferFrom",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+        },
+        {
+            "inputs": [
+                {
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                }
+            ],
+            "name": "userApproval",
             "outputs": [
                 {
-                    "internalType": "string",
+                    "internalType": "bool",
                     "name": "",
-                    "type": "string"
+                    "type": "bool"
                 }
             ],
             "stateMutability": "view",
@@ -994,6 +1026,10 @@ const MetaMask = () => {
         const nftDetail = await window.contract1.methods.nfts(Details).call();
         document.getElementById("detailsId").innerHTML = `${"ImageName:" + " " + nftDetail.imageName + " " + "tokenURI:" + "" + nftDetail.tokenURI}`;
     }
+    const getApprovalByOwner = async () => {
+        const userAddress = (document.getElementById("userId").value);
+        await window.contract1.methods.getApprovalByOwner(userAddress).send({ from: account });
+    }
     const NFTMint = async () => {
         const Image = (document.getElementById("imageId").value);
         const myEntry = (document.getElementById("nftURI").value);
@@ -1197,6 +1233,11 @@ const MetaMask = () => {
                         <input type="text" className="inputs" placeholder="NFTIndex" id="nftId" /><br />
                         <button onClick={NFt_Details}>get_NFTs</button>
                         <p id="detailsId" className="inputs">details NFt </p>
+                    </div>
+                    <br/>
+                    <div className="col">
+                        <input type="text" className="inputs" placeholder="userAddress" id="userId" /><br />
+                        <button onClick={getApprovalByOwner}>Approve By Owner For Minting Nfts</button>
                     </div>
                     <br />
                     <div className="col">
