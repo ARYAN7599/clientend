@@ -22,7 +22,6 @@ const rLogin = new RLogin({
 })
 const MetaMask = () => {
     const [provider, setProvider] = useState(null);
-    // const [sessions, setSessions] = useState([]);
     let [account, setAccount] = useState('');
     const [txHash, setTxHash] = useState('');
     const [balance, setBalance] = useState();
