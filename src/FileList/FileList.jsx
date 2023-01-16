@@ -3,17 +3,17 @@ import React, { useState } from "react";
 import FileItem from './../FileItem/FileItem'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Col, Row, Image } from 'react-bootstrap'
-const baseURL= "https://139.59.65.197:5000/images/";
+const baseURL= "http://139.59.65.197:5000/images/";
 
 const FileList = ({ files, getFile }) => {
     const getFileHandler = (_name) => {
-        axios.get(`https://139.59.65.197:5000/images/${_name}`)
-            .then((res) => getFile("https://139.59.65.197:5000/images/"+_name))
+        axios.get(`http://139.59.65.197:5000/images/${_name}`)
+            .then((res) => getFile("http://139.59.65.197:5000/images/"+_name))
             .catch((err) => console.error(err));
     }
     const [imageArray, setPost] = useState(null);
     const get = async () => {
-        axios.get("https://139.59.65.197:5000").then((res) => {
+        axios.get("http://139.59.65.197:5000").then((res) => {
             setPost(res.data);
         });
     }
