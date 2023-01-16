@@ -10,8 +10,8 @@ const FileItem = ({ file, getFile }) => {
                 className="file-item"
                 key={file.name}>
                 <FontAwesomeIcon icon={faFileAlt} />
-               <img className="previewimg" src={"http://139.59.65.197:5000/images/"+file.name} alt="UploadImage" />
-               <p>{"http://139.59.65.197:5000/images/"+file.name}</p>
+               <img className="previewimg" src={"https://139.59.65.197:5000/images/"+file.name} alt="UploadImage" />
+               <p>{"https://139.59.65.197:5000/images/"+file.name}</p>
                 <div className="actions">
                     <div className="loading"></div>
                     {file.isUploading && <FontAwesomeIcon
@@ -19,7 +19,7 @@ const FileItem = ({ file, getFile }) => {
                         onClick={() => getFile(file.name)} />
                     }
                     {!file.isUploading &&
-                        <a href={"http://139.59.65.197:5000/images/"+file.name} target="_blank"  rel="noreferrer"><FontAwesomeIcon icon={faCameraRetro}
+                        <a href={"https://139.59.65.197:5000/images/"+file.name} target="_blank"  rel="noreferrer"><FontAwesomeIcon icon={faCameraRetro}
                             onClick={() => getFile(file.name)} /></a>
                     }
                 </div>

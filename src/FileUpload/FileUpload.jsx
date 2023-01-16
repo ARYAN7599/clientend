@@ -18,7 +18,7 @@ const FileUpload = ({ files, setFiles, getFile }) => {
             file,
             file.name
         )
-        axios.post('http://139.59.65.197:5000/upload', formData)
+        axios.post('https://139.59.65.197:5000/upload', formData)
             .then((res) => {
                 file.isUploading = false;
                 setFiles([...files, file])
