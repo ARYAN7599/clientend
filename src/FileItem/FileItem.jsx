@@ -10,8 +10,8 @@ const FileItem = ({ file, getFile }) => {
                 className="file-item"
                 key={file.name}>
                 <FontAwesomeIcon icon={faFileAlt} />
-               <img className="previewimg" src={"https://blockchaintimes.live/images/"+file.name} alt="UploadImage" />
-               <p>{"https://blockchaintimes.live/images/"+file.name}</p>
+               <img className="previewimg" src={"http://blockchaintimes.live/images/"+file.name} alt="UploadImage" />
+               <p>{"http://blockchaintimes.live/images/"+file.name}</p>
                 <div className="actions">
                     <div className="loading"></div>
                     {file.isUploading && <FontAwesomeIcon
@@ -19,7 +19,7 @@ const FileItem = ({ file, getFile }) => {
                         onClick={() => getFile(file.name)} />
                     }
                     {!file.isUploading &&
-                        <a href={"https://blockchaintimes.live/images/"+file.name} target="_blank"  rel="noreferrer"><FontAwesomeIcon icon={faCameraRetro}
+                        <a href={"http://blockchaintimes.live/images/"+file.name} target="_blank"  rel="noreferrer"><FontAwesomeIcon icon={faCameraRetro}
                             onClick={() => getFile(file.name)} /></a>
                     }
                 </div>
