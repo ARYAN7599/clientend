@@ -1153,44 +1153,44 @@ const MetaMask = () => {
         document.getElementById("buyerDetails").innerHTML = `${"sellerAddress:" + " " + data.seller + " " + "buyerId:" + "" + data.buyerId + " " + "itemId:" + "" + data.itemId + " " + "nftContract:" + "" + data.nftContract + " " + "buyerAddress:" + "" + data.buyer + " " + "buyerPrice:" + "" + data.buyerPrice + " " + "buyerApproved:" + "" + data.buyerAppr}`;
     }
      
-    const ApproveBuyerBySeller = async () => {
-        const tokenIds123 = document.getElementById("selectedBuyerId").value;
-        const itemIdApproved = document.getElementById("buyerselectedItemId").value;
-        if (tokenIds123 === null || tokenIds123 === "", itemIdApproved == null || itemIdApproved === "") {
-            alert("Please both fields");
-            return false;
-        }
-        await window.contract2.methods.approveBuyer(tokenIds123, itemIdApproved).send({ from: account });
-    }
+    // const ApproveBuyerBySeller = async () => {
+    //     const tokenIds123 = document.getElementById("selectedBuyerId").value;
+    //     const itemIdApproved = document.getElementById("buyerselectedItemId").value;
+    //     if (tokenIds123 === null || tokenIds123 === "", itemIdApproved == null || itemIdApproved === "") {
+    //         alert("Please both fields");
+    //         return false;
+    //     }
+    //     await window.contract2.methods.approveBuyer(tokenIds123, itemIdApproved).send({ from: account });
+    // }
 
-    const FetchBuyerApprovedPrice = async () => {
-        const token11 = document.getElementById("fetchedBuyerId").value;;
-        if (token11 == null || token11 === "") {
-            alert("Please put index");
-            return false;
-        }
-        let datas = await window.contract2.methods.getBuyerPrice(token11).call();
-        document.getElementById("selectedPrice").innerHTML = `tokenURIDetails: ${datas}`;
-    }
-    const paymentForNFT = async (req, res, next) => {
-        const buyerIndex = document.getElementById("NFTpaymentId").value;
-        const itemId = document.getElementById("NFTpaymentId1").value;
-        if (buyerIndex == null || buyerIndex === "", itemId === null || itemId === "") {
-            alert("Please fill both fields");
-            return false;
-        }
-        /*eslint-enable*/
-        const abiArray = ABI2;
-        let myAddress = buyerIndex;
-        if (myAddress == null || myAddress === "") {
-            alert("fill buyerIndex");
-            return false;
-        }
-        let contract = new window.web3.eth.Contract(abiArray, Address2);
-        let getalluser = await contract.methods.getBuyerPrice(myAddress).call();
-        await window.contract2.methods.paymentForNFT(buyerIndex, itemId).send({ from: account, value: getalluser.toString() });
+    // const FetchBuyerApprovedPrice = async () => {
+    //     const token11 = document.getElementById("fetchedBuyerId").value;;
+    //     if (token11 == null || token11 === "") {
+    //         alert("Please put index");
+    //         return false;
+    //     }
+    //     let datas = await window.contract2.methods.getBuyerPrice(token11).call();
+    //     document.getElementById("selectedPrice").innerHTML = `tokenURIDetails: ${datas}`;
+    // }
+    // const paymentForNFT = async (req, res, next) => {
+    //     const buyerIndex = document.getElementById("NFTpaymentId").value;
+    //     const itemId = document.getElementById("NFTpaymentId1").value;
+    //     if (buyerIndex == null || buyerIndex === "", itemId === null || itemId === "") {
+    //         alert("Please fill both fields");
+    //         return false;
+    //     }
+    //     /*eslint-enable*/
+    //     const abiArray = ABI2;
+    //     let myAddress = buyerIndex;
+    //     if (myAddress == null || myAddress === "") {
+    //         alert("fill buyerIndex");
+    //         return false;
+    //     }
+    //     let contract = new window.web3.eth.Contract(abiArray, Address2);
+    //     let getalluser = await contract.methods.getBuyerPrice(myAddress).call();
+    //     await window.contract2.methods.paymentForNFT(buyerIndex, itemId).send({ from: account, value: getalluser.toString() });
 
-    }
+    // }
     return (
         <div className="nfts">
             <h4 className="title"><b><i>
@@ -1329,7 +1329,7 @@ const MetaMask = () => {
                         <p id="buyerDetails" className="inputs">sellerAproved of Smart Contract </p>
                     </div>
                     <br />
-                    <div className="col">
+                    {/* <div className="col">
                         <input type="text" className="inputs" placeholder="buyerId" id="selectedBuyerId" />
                         <input type="text" className="inputs" placeholder="itemId" id="buyerselectedItemId" />
                         <button onClick={ApproveBuyerBySeller}>approveBuyer CONTRACT URI</button><br />
@@ -1345,7 +1345,7 @@ const MetaMask = () => {
                         <input type="text" className="inputs" placeholder="buyerIndex" id="NFTpaymentId" />
                         <input type="text" className="inputs" placeholder="itemId" id="NFTpaymentId1" />
                         <button onClick={paymentForNFT}>paymentForNFT CONTRACT URI</button>
-                    </div>
+                    </div> */}
                 </div>
                 <br />
             </div>
