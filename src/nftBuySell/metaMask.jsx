@@ -1212,9 +1212,9 @@ const MetaMask = () => {
                         <p>Wallet_Balance: {balance}</p>
                     </div> */}
                     <br />
-                    <div>
+                    {/* <div>
                         <button onClick={handleDisconnect}>Disconnect</button>
-                    </div>
+                    </div> */}
                     <br />
                     <div className="col">
                         <button onClick={sendTransaction} disabled={!account}>send transaction</button>
