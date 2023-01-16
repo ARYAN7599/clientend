@@ -980,6 +980,10 @@ const MetaMask = () => {
             setProvider(provider)
             const accounts = provider.request({ method: 'eth_accounts' }).then(([account]) => setAccount(account))
             account = accounts[0];
+            const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const bal = provider.getBalance(account);
+        let bals = parseInt(bal)
+        setBalance(Web3.utils.fromWei(bals.toString(), 'ether'));
         })
        
     // const getBalance = async () => {
