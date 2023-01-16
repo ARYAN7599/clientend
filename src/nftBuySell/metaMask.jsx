@@ -980,18 +980,14 @@ const MetaMask = () => {
             setProvider(provider)
             const accounts = provider.request({ method: 'eth_accounts' }).then(([account]) => setAccount(account))
             account = accounts[0];
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const bal = provider.getBalance(account);
-        let bals = parseInt(bal)
-        setBalance(Web3.utils.fromWei(bals.toString(), 'ether'));
         })
        
-    // const getBalance = async () => {
-    //     const provider = new ethers.providers.Web3Provider(window.ethereum);
-    //     const bal = await provider.getBalance(account);
-    //     let bals = parseInt(bal)
-    //     setBalance(Web3.utils.fromWei(bals.toString(), 'ether'));
-    // };
+    const getBalance = async () => {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const bal = await provider.getBalance(account);
+        let bals = parseInt(bal)
+        setBalance(Web3.utils.fromWei(bals.toString(), 'ether'));
+    };
 
     async function handleDisconnect() {
         try {
@@ -1203,14 +1199,13 @@ const MetaMask = () => {
                     <div className="col">
                         <RLoginButton onClick={connect} >Connect wallet Address</RLoginButton>
                         <p>wallet address: {account}</p>
-                        <p>Wallet_Balance: {balance}</p>
                     </div>
                    
-                    {/* <br />
+                    <br />
                     <div className="col">
                         <button onClick={getBalance}>Fufi Balance</button>
                         <p>Wallet_Balance: {balance}</p>
-                    </div> */}
+                    </div>
                     <br />
                     <div>
                         <button onClick={handleDisconnect}>Disconnect</button>
