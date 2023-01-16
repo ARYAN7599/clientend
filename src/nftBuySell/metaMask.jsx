@@ -1205,6 +1205,7 @@ const MetaMask = () => {
                         <p>wallet address: {account}</p>
                         <p>Wallet_Balance: {balance}</p>
                     </div>
+                    {/* //ffe */}
                     {/* <br />
                     <div className="col">
                         <button onClick={getBalance}>Fufi Balance</button>
