@@ -1203,6 +1203,7 @@ const MetaMask = () => {
                     <div className="col">
                         <RLoginButton onClick={connect} >Connect wallet Address</RLoginButton>
                         <p>wallet address: {account}</p>
+                        <p>Wallet_Balance: {balance}</p>
                     </div>
                     {/* <br />
                     <div className="col">
