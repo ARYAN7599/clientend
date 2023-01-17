@@ -2,6 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileAlt, faSpinner, faCameraRetro } from '@fortawesome/free-solid-svg-icons'
 import './FileItem.scss'
+const baseURL= "https://blockchaintimes.live/images/";
 
 const FileItem = ({ file, getFile }) => {
     return (
@@ -10,8 +11,8 @@ const FileItem = ({ file, getFile }) => {
                 className="file-item"
                 key={file.name}>
                 <FontAwesomeIcon icon={faFileAlt} />
-               <img className="previewimg" src={"https://blockchaintimes.live/images/"+file.name} alt="UploadImage" />
-               <p>{"https://blockchaintimes.live/images/"+file.name}</p>
+               <img className="previewimg" src={baseURL+file.name} alt="UploadImage" />
+               <p>{baseURL+file.name}</p>
                 <div className="actions">
                     <div className="loading"></div>
                     {file.isUploading && <FontAwesomeIcon
@@ -19,7 +20,7 @@ const FileItem = ({ file, getFile }) => {
                         onClick={() => getFile(file.name)} />
                     }
                     {!file.isUploading &&
-                        <a href={"https://blockchaintimes.live/images/"+file.name} target="_blank"  rel="noreferrer"><FontAwesomeIcon icon={faCameraRetro}
+                        <a href={baseURL+file.name} target="_blank"  rel="noreferrer"><FontAwesomeIcon icon={faCameraRetro}
                             onClick={() => getFile(file.name)} /></a>
                     }
                 </div>
