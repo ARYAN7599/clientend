@@ -3,17 +3,17 @@ import React, { useState } from "react";
 import FileItem from './../FileItem/FileItem'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Col, Row, Image } from 'react-bootstrap'
-const baseURL= "http://blockchaintimes.live:5000/images/";
+const baseURL= "http://blockchaintimes.live/api/images/";
 
 const FileList = ({ files, getFile }) => {
     const getFileHandler = (_name) => {
-        axios.get(`http://blockchaintimes.live:5000/images/${_name}`)
-            .then((res) => getFile("http://blockchaintimes.live:5000/images/"+_name))
+        axios.get(`http://blockchaintimes.live/api/images/${_name}`)
+            .then((res) => getFile("http://blockchaintimes.live/api/images/"+_name))
             .catch((err) => console.error(err));
     }
     const [imageArray, setPost] = useState(null);
     const get = async () => {
-        axios.get("http://blockchaintimes.live:5000").then((res) => {
+        axios.get("http://blockchaintimes.live/api").then((res) => {
             setPost(res.data);
         });
     }

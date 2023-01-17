@@ -18,7 +18,7 @@ const FileUpload = ({ files, setFiles, getFile }) => {
             file,
             file.name
         )
-        axios.post('http://blockchaintimes.live:5000/upload', formData)
+        axios.post('http://blockchaintimes.live/api/upload', formData)
             .then((res) => {
                 file.isUploading = false;
                 setFiles([...files, file])
