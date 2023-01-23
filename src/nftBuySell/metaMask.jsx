@@ -1196,7 +1196,7 @@ const MetaMask = () => {
             </i></b></h4>
             <div id="example1">
                 <br />
-                <h1>MetaMask Connection</h1>
+                <h1>MetaMask wallets Connection</h1>
                 <div className="column align-items-start">
                     <div className="col">
                         <RLoginButton onClick={connect} >Connect wallet Address</RLoginButton>
