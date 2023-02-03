@@ -9,10 +9,10 @@ const FileUpload = ({ files, setFiles, getFile }) => {
     const uploadHandler = (event) => {
         const file = event.target.files[0];
 
-        if (file.size > 1e6) {
-            window.alert("Please upload a file smaller than 1 MB");
-            return false;
-        }
+        // if (file.size > 1e6) {
+        //     window.alert("Please upload a file smaller than 1 MB");
+        //     return false;
+        // }
 
         if (!file) return;
         file.isUploading = true;
