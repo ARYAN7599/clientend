@@ -21,7 +21,7 @@ const FileUpload = ({ files, setFiles, getFile }) => {
         // upload file
         const formData = new FormData();
         formData.append(
-            "newFile",
+            "file",
             file,
             file.name
         )
