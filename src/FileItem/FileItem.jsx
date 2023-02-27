@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileAlt, faSpinner, faCameraRetro } from '@fortawesome/free-solid-svg-icons'
 import './FileItem.scss'
 import 'bootstrap/dist/css/bootstrap.min.css';
-const baseURL= "http://localhost:5000/images/";
+const baseURL= "https://blockchaintimes.live/images/";
 
 const FileItem = ({ file, getFile }) => {
     return (
