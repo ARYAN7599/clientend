@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import './FileUpload.scss'
 import axios from 'axios'
-const baseURL = "https://blockchaintimes.live/upload";
+const baseURL = "http://localhost:5000/upload";
 
 const FileUpload = ({ files, setFiles, getFile }) => {
     const uploadHandler = (event) => {

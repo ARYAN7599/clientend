@@ -4,8 +4,8 @@ import FileItem from './../FileItem/FileItem'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Col, Row, Image } from 'react-bootstrap'
 
-const baseURL= "https://blockchaintimes.live/images/";
-const mainURL = "https://blockchaintimes.live";
+const baseURL= "http://localhost:5000/images/";
+const mainURL = "http://localhost:5000";
 
 const FileList = ({ files, getFile }) => {
     const getFileHandler = (_name) => {

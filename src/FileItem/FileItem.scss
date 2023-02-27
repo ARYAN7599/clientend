@@ -1,11 +1,11 @@
 li {
     list-style: none;
-    margin: 1.2em 0;
+    margin: 1.0em 0;
     background-color: #f55e3038;
     border-radius: 5px;
-    display: flex;
+    // display: flex;
     align-items: center;
-    padding: 1.2em 1.5em;
+    padding: auto;
 
     svg {
         color: #f55321;
@@ -15,10 +15,11 @@ li {
         }
     }
     p{
-        padding: 1.0em;
-        flex: 1;
+        padding: 0.5em;
+        flex: 0;
         font-size: 1.0rem;
         font-weight: bold;
+        
     }
 
     a{
